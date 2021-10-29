@@ -1,5 +1,15 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
+var router = express.Router();
+
+const hostname='localhost';
+const port = 3000;
+
+const app = express();
+
+app.listen(port, hostname,() => {
+  console.log('Mon serveur fonctionne sur http://${hostname}:${port} \n')
+})
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -39,3 +49,20 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+/* GET */
+app.get('/test', (req, res)=>{
+  res.json({
+    req: req.method,
+    data: "This is a GET"
+  });
+});
+
+/* PUT */
+app.put('/test', (req, res)=>{
+  res.json({
+    req: req.method,
+    data: "This is a PUT"
+  });
+});
